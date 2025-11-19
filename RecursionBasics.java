@@ -364,6 +364,21 @@ public class RecursionBasics {
         return currChar + restOfString;
     }
 
+    /**
+     * The function `keypadCombinations` recursively generates all possible combinations of characters
+     * corresponding to a given numeric string using a keypad mapping.
+     * 
+     * @param dig The `dig` parameter is a String representing the digits for which we need to find all
+     * possible keypad combinations. Each digit in the `dig` String corresponds to a set of characters
+     * on a standard phone keypad.
+     * @param kp The `kp` parameter in the `keypadCombinations` method is an array of strings that
+     * represents the possible characters corresponding to each digit on a phone keypad. Each index of
+     * the array corresponds to a digit from 0 to 9, and the string at that index contains the
+     * characters that can
+     * @param res The `res` parameter in the `keypadCombinations` method is used to store the current
+     * combination of characters being generated as we recursively explore the possible combinations of
+     * characters corresponding to the input digits.
+     */
     public static void keypadCombinations(String dig, String kp[], String res) {
         if(dig.length() == 0) {
             System.out.print(res + " ");
@@ -378,14 +393,13 @@ public class RecursionBasics {
         }
     }
 
-
     public static void main(String[] args) {
 
-        String dig = "253";
+        // String dig = "253";
 
-        String kp[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        // String kp[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
-        keypadCombinations(dig, kp, "");
+        // keypadCombinations(dig, kp, "");
 
         // int arr[] = {2, 5, 3, 1, 2};
         // System.out.println(searchInArray(arr, 0, 0));
