@@ -14,10 +14,10 @@ public class LinkedList {
     public static int size;
 
     public void addLast(int data) {
-        //Step 1 - Create new node
+        // Step 1 - Create new node
         Node newNode = new Node(data);
         size++;
-        //Step 2 - Check if the list is empty
+        // Step 2 - Check if the list is empty
         if (head == null) {
             head = newNode;
             tail = newNode;
@@ -29,19 +29,19 @@ public class LinkedList {
 
     public void print() {
         Node temp = head;
-        if(temp == null) {
+        if (temp == null) {
             System.out.println("List is empty");
             return;
         }
-        while(temp != null) {
-            System.out.print(temp.data+ " -> ");
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
             temp = temp.next;
         }
         System.out.println("null");
     }
 
     public void add(int idx, int data) {
-        if(idx == 0) {
+        if (idx == 0) {
             addLast(data);
             return;
         }
@@ -50,7 +50,7 @@ public class LinkedList {
         Node temp = head;
         int i = 0;
 
-        while(i < idx-1) {
+        while (i < idx - 1) {
             temp = temp.next;
             i++;
         }
@@ -60,10 +60,10 @@ public class LinkedList {
     }
 
     public int removeFirst() {
-        if(size == 0) {
+        if (size == 0) {
             System.out.println("LL is empty");
             return Integer.MIN_VALUE;
-        } else if(size == 1) {
+        } else if (size == 1) {
             int val = head.data;
             head = tail = null;
             size = 0;
@@ -77,12 +77,12 @@ public class LinkedList {
 
     public int itrSearch(int key) {
         Node temp = head;
-        if(size == 0) {
+        if (size == 0) {
             System.out.println("LL is empty");
         }
-        int i=0;
-        while(i != size) {
-            if(temp.data == key) {
+        int i = 0;
+        while (i != size) {
+            if (temp.data == key) {
                 return i;
             }
             temp = temp.next;
@@ -92,16 +92,16 @@ public class LinkedList {
     }
 
     public int helper(Node head, int key) {
-        if(head == null) {
+        if (head == null) {
             return -1;
         }
-        if(head.data == key) {
+        if (head.data == key) {
             return 0;
         }
 
         int idx = helper(head.next, key);
 
-        if(idx == -1) {
+        if (idx == -1) {
             return -1;
         }
 
@@ -116,7 +116,7 @@ public class LinkedList {
         Node prev = null;
         Node curr = tail = head;
 
-        while(curr != null) {
+        while (curr != null) {
             Node next = curr.next;
             curr.next = prev;
             prev = curr;
@@ -128,12 +128,12 @@ public class LinkedList {
     public void deleteNthFromEnd(int n) {
         int sz = 0;
         Node temp = head;
-        while(temp != null) {
+        while (temp != null) {
             temp = temp.next;
             sz++;
         }
 
-        if(n == sz) {
+        if (n == sz) {
             head = head.next;
             return;
         }
@@ -141,7 +141,7 @@ public class LinkedList {
         int i = 1;
         Node prev = head;
         int ithFromEnd = sz - n;
-        while(i < ithFromEnd) {
+        while (i < ithFromEnd) {
             prev = prev.next;
             i++;
         }
@@ -149,12 +149,12 @@ public class LinkedList {
         return;
     }
 
-    //slow-fast Approach
+    // slow-fast Approach
     public Node findMid(Node head) {
         Node slow = head;
         Node fast = head;
 
-        while(fast != null && fast.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
@@ -162,7 +162,7 @@ public class LinkedList {
     }
 
     public boolean checkPalindrome() {
-        if(head == null || head.next == null) {
+        if (head == null || head.next == null) {
             return true;
         }
 
@@ -174,19 +174,19 @@ public class LinkedList {
         Node curr = midNode;
         Node next;
 
-        while(curr != null) {
+        while (curr != null) {
             next = curr.next;
             curr.next = prev;
             prev = curr;
-            curr = next; 
+            curr = next;
         }
 
         // Step 3 - check 1st half and 2nd half
         Node leftNode = head;
         Node rightNode = prev;
 
-        while(rightNode != null) {
-            if(leftNode.data != rightNode.data) {
+        while (rightNode != null) {
+            if (leftNode.data != rightNode.data) {
                 return false;
             }
             leftNode = leftNode.next;
@@ -199,10 +199,10 @@ public class LinkedList {
         Node slow = head;
         Node fast = head;
 
-        while(fast != null && fast.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if(slow == fast) {
+            if (slow == fast) {
                 return true;
             }
         }
@@ -213,23 +213,22 @@ public class LinkedList {
         // Step - 1 Detect Cycle
         Node slow = head;
         Node fast = head;
-        boolean cycle = false;
-        while(fast != null && fast.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if(slow == fast) {
-                cycle = true;
+            if (slow == fast) {
                 break;
             }
         }
-        if(cycle = false) {
+        // If no cycle was found, fast will be null or fast.next will be null
+        if (fast == null || fast.next == null) {
             return;
         }
 
         // Step - 2 find meeting point
         slow = head;
-        Node prev = null; //last node
-        while(slow != fast) {
+        Node prev = null; // last node
+        while (slow != fast) {
             slow = slow.next;
             fast = fast.next;
             prev = fast;
@@ -243,7 +242,7 @@ public class LinkedList {
         Node slow = head;
         Node fast = head.next;
 
-        while(fast != null && fast.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
@@ -254,8 +253,8 @@ public class LinkedList {
         Node mergeLL = new Node(-1);
         Node temp = mergeLL;
 
-        while(leftHalf != null && rightHalf != null) {
-            if(leftHalf.data <= rightHalf.data) {
+        while (leftHalf != null && rightHalf != null) {
+            if (leftHalf.data <= rightHalf.data) {
                 temp.next = leftHalf;
                 leftHalf = leftHalf.next;
                 temp = temp.next;
@@ -266,13 +265,13 @@ public class LinkedList {
             }
         }
 
-        while(leftHalf != null) {
+        while (leftHalf != null) {
             temp.next = leftHalf;
             leftHalf = leftHalf.next;
             temp = temp.next;
         }
 
-        while(rightHalf != null) {
+        while (rightHalf != null) {
             temp.next = rightHalf;
             rightHalf = rightHalf.next;
             temp = temp.next;
@@ -282,42 +281,42 @@ public class LinkedList {
     }
 
     public Node mergeSort(Node head) {
-        if(head == null || head.next == null) {
+        if (head == null || head.next == null) {
             return head;
         }
-        //Step1 - Mid
+        // Step1 - Mid
         Node mid = getMid(head);
 
-        //Step2 - leftHalf and rightHalf
+        // Step2 - leftHalf and rightHalf
         Node rightHead = mid.next;
         mid.next = null;
         Node leftHalf = mergeSort(head);
         Node rightHalf = mergeSort(rightHead);
 
-        //Step3 - merge
+        // Step3 - merge
         return merge(leftHalf, rightHalf);
     }
 
     public void zigZag() {
-        //Step 1 - find mid
+        // Step 1 - find mid
         Node slow = head;
         Node fast = head.next;
 
-        while(fast != null && fast.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
         Node mid = slow;
 
-        //Step 2 - reverse 2nd half
+        // Step 2 - reverse 2nd half
         Node curr = mid.next;
         mid.next = null;
         Node prev = null;
         Node next;
 
-        while(curr != null) {
+        while (curr != null) {
             next = curr.next;
-            curr.next =  prev;
+            curr.next = prev;
             prev = curr;
             curr = next;
         }
@@ -325,10 +324,10 @@ public class LinkedList {
         Node left = head;
         Node right = prev;
 
-        //Step 3 - merge alternatly
+        // Step 3 - merge alternatly
         Node nextL, nextR;
 
-        while(left != null && right != null) {
+        while (left != null && right != null) {
             nextL = left.next;
             left.next = right;
             nextR = right.next;
@@ -339,19 +338,19 @@ public class LinkedList {
         }
     }
 
-    //add two nos represented by linked list
+    // add two nos represented by linked list
     public static Node addTwoNos(Node first, Node second) {
         Node dummy = new Node(-1);
         Node temp = dummy;
         int carry = 0;
 
-        while(first != null || second != null || carry != 0) {
+        while (first != null || second != null || carry != 0) {
             int sum = carry;
-            if(first != null) {
+            if (first != null) {
                 sum += first.data;
                 first = first.next;
             }
-            if(second != null) {
+            if (second != null) {
                 sum += second.data;
                 second = second.next;
             }
@@ -369,7 +368,7 @@ public class LinkedList {
         // ll.addLast(2);
         // ll.addLast(1);
 
-        // ll.print(); 
+        // ll.print();
         // System.out.println(ll.checkPalindrome());
         // head = new Node(1);
         // Node temp = new Node(2);
