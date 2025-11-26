@@ -79,7 +79,24 @@ class DoublyLL {
         temp.next = null;
         tail.prev = null;
         tail = temp;
+        size--;
         return val;
+    }
+
+    public void reverse() {
+        Node curr = head;
+        Node prev = null;
+        Node next;
+
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next;
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
     }
 
     public void print() {
@@ -100,7 +117,7 @@ class DoublyLL {
         dll.addLast(4);
         dll.print();
 
-        dll.removeLast();
+        dll.reverse();
         dll.print();
     }
 }
