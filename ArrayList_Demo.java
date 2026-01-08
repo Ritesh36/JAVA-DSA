@@ -285,22 +285,22 @@ public class ArrayList_Demo {
 
         // System.out.println(pairSum2(list, target));
 
-        // ArrayList<Integer>arr = new ArrayList<>();
-        // arr.add(1);
-        // arr.add(3);
-        // arr.add(5);
-        // arr.add(3);
-        // System.out.println(lonelyInt(arr));
+        ArrayList<Integer>arr = new ArrayList<>();
+        arr.add(1);
+        arr.add(3);
+        arr.add(5);
+        arr.add(3);
+        System.out.println(lonelyInt(arr));
 
-        ArrayList<Integer> list1 = new ArrayList<>();
-        list1.add(1);
-        list1.add(3);
-        list1.add(5);
-        list1.add(3);
-        ArrayList<Integer> list2 = new ArrayList<>();
-        list2.add(2);
-        list2.add(4);
-        list2.add(6);
-        mergeTwoSortedList(list1, list2);
+        // ArrayList<Integer> list1 = new ArrayList<>();
+        // list1.add(1);
+        // list1.add(3);
+        // list1.add(5);
+        // list1.add(3);
+        // ArrayList<Integer> list2 = new ArrayList<>();
+        // list2.add(2);
+        // list2.add(4);
+        // list2.add(6);
+        // mergeTwoSortedList(list1, list2);
     }
 }
