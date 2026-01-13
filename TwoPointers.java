@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class TwoPointers {
     public static int[] twoPointer(int nums[], int target) {
         int i = 0;
