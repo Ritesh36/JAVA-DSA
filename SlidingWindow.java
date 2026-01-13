@@ -60,6 +60,35 @@ public class SlidingWindow {
         }
         return maxLen;
     }
+
+   /**
+    * The `minSubArrayLen` function in Java calculates the minimum length of a contiguous subarray
+    * whose sum is greater than or equal to a given target value.
+    * 
+    * @param target The `target` parameter in the `minSubArrayLen` method represents the sum that we
+    * want to find in the subarray. The method aims to find the minimum length of a contiguous subarray
+    * of which the sum is greater than or equal to the target value.
+    * @param num An array of integers representing the input numbers.
+    * @return The `minSubArrayLen` method returns the minimum length of a contiguous subarray of the
+    * input array `num` whose sum is greater than or equal to the target value.
+    */
+    public static int minSubArrayLen(int target, int num[]) {
+        int left = 0;
+        int currSum = 0;
+        int minLen = Integer.MAX_VALUE;
+
+        for (int right=0; right<num.length; right++) {
+            currSum += num[right];
+            while (currSum >= target) {
+                if (right - left + 1 < minLen) {
+                    minLen = right - left + 1;
+                }
+                currSum -= num[left];
+                left++;
+            }
+        }
+        return minLen;
+    }
     public static void main(String[] args) {
         // int nums[] = {1, 5, 4, 2, 9, 9, 9};
         // int k = 3;
@@ -67,5 +96,9 @@ public class SlidingWindow {
 
         // String str = "abcabcbb";
         // System.out.println(longestSubstring(str));
+
+        int nums[] = {2,3,1,2,4,3};
+        int target = 7;
+        System.out.println(minSubArrayLen(target, nums));
     }
 }
