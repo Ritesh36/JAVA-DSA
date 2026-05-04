@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.LinkedList;
 
 public class BinaryTreesB {
 
@@ -31,6 +32,7 @@ public class BinaryTreesB {
             return newNode;
         }
 
+            
         public static void preOrder(node root) {
             if (root == null) {
                 return;
@@ -101,7 +103,8 @@ public class BinaryTreesB {
         }
 
         static int diameter = 0;
-        public static int diameter (node root) {
+
+        public int diameter(node root) {
             if (root == null) {
                 return 0;
             }
@@ -109,7 +112,7 @@ public class BinaryTreesB {
             int lh = height(root.left);
             int rh = height(root.right);
 
-            diameter = Math.max(diameter, (lh+rh));
+            diameter = Math.max(diameter, (lh + rh));
 
             return 1 + Math.max(lh, rh);
         }
@@ -159,6 +162,56 @@ public class BinaryTreesB {
 
             return (isIdentical(root1.left, root2.left) && isIdentical(root1.right, root2.right));
         }
+
+        static class Info {
+            int hd;
+            node node;
+
+            public Info(node node, int hd) {
+                this.hd = hd;
+                this.node = node;
+            }
+        }
+
+        public static void topView(node root) {
+            Queue<Info> q = new LinkedList<>();
+            HashMap<Integer, node> map = new HashMap<>();
+
+            int min = 0, max = 0;
+            q.add(new Info(root, 0));
+            q.add(null);
+
+            while (!q.isEmpty()) {
+                Info curr = q.remove();
+
+                if (curr == null) {
+                    if (q.isEmpty()) {
+                        break;
+                    } else {
+                        q.add(null);
+                    }
+                } else {
+                    if (!map.containsKey(curr.hd)) {
+                        map.put(curr.hd, curr.node);
+                    }
+
+                    if (curr.node.left != null) {
+                        q.add(new Info(curr.node.left, curr.hd-1));
+                        min = Math.min(min, curr.hd-1);
+                    }
+
+                    if (curr.node.right != null) {
+                        q.add(new Info(curr.node.right, curr.hd+1));
+                        max = Math.max(max, curr.hd+1);
+                    }
+                }
+            }
+
+            for (int i=min; i<=max; i++) {
+                System.out.print(map.get(i).data + " ");
+            }
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
@@ -170,17 +223,17 @@ public class BinaryTreesB {
         // tree.postOrder(root);
         // tree.levelOrder(root);
 
-        BinaryTree tree = new BinaryTree();
-
         node root = new node(1);
         root.left = new node(2);
         root.right = new node(3);
         root.left.left = new node(4);
         root.left.right = new node(5);
+        root.right.left = new node(6);
+        root.right.right = new node(7);
 
-        System.out.println("Diameter : " + tree.diameter(root));
-
+        // System.out.println("Diameter : " + tree.diameter(root));
 
         // System.out.println(BinaryTree.isSubtree(root, subRoot));
+        BinaryTree.topView(root);
     }
 }
