@@ -50,13 +50,38 @@ public class GreedyAlgo {
         return arrows;
     }
 
+    public static void maxActivity(int start[], int end[]) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        int maxActivity = 1;
+        int lastEnd = end[0];
+        ans.add(0);
+
+        for (int i=1; i<end.length; i++) {
+            if (start[i] >= lastEnd) {
+                maxActivity++;
+                ans.add(i);
+                lastEnd = end[i];
+            }
+        }
+
+        System.out.println("Max Activity: " + maxActivity);
+        for (int i=0; i<ans.size(); i++) {
+            System.out.print("A"+ ans.get(i)+ " ");
+        }
+        System.out.println();
+    }
+
 
 
     public static void main(String[] args) {
         // int[][] intervals = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
         // System.out.println(nonOverLapping(intervals));
 
-        int[][] points = {{10, 16}, {2, 8}, {1, 6}, {7, 12}};
-        System.out.println(findMinArrowShots(points));
+        // int[][] points = {{10, 16}, {2, 8}, {1, 6}, {7, 12}};
+        // System.out.println(findMinArrowShots(points));
+
+        int start[] = {10, 12, 20};
+        int end[] = {20, 25, 30};
+        maxActivity(start, end);
     }
 }

@@ -212,10 +212,25 @@ public class BinaryTreesB {
             }
             System.out.println();
         }
+
+        public static void kthLevel(node root, int level, int k) {
+            if (root == null) {
+                return;
+            }
+
+            if (level == k) {
+                System.out.print(root.data + " ");
+                return;
+            }
+
+            kthLevel(root.left, level+1, k);
+            kthLevel(root.right, level+1, k);
+        }
     }
 
     public static void main(String[] args) {
         // int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        BinaryTree tree = new BinaryTree();
         // node root = BinaryTree.buildTree(nodes);
         // System.out.println(root.data);
         // tree.preOrder(root);
@@ -234,6 +249,8 @@ public class BinaryTreesB {
         // System.out.println("Diameter : " + tree.diameter(root));
 
         // System.out.println(BinaryTree.isSubtree(root, subRoot));
-        BinaryTree.topView(root);
+        // BinaryTree.topView(root);
+        int k = 3;
+        tree.kthLevel(root, 1, k);
     }
 }
